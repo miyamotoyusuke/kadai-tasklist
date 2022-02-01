@@ -1,10 +1,5 @@
 class UsersController < ApplicationController
-  def index
-    @pagy, @users = pagy(User.order(id: :desc), items: 25)
-  end
 
-  def show
-  end
 
   def new
     @user = User.new
@@ -15,7 +10,7 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:success] = 'ユーザを登録しました。'
-      redirect_to tasks_url
+      redirect_to root_path
     else
       flash.now[:danger] = 'ユーザの登録に失敗しました。'
       render :new
